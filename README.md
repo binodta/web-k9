@@ -56,13 +56,22 @@ graph TD
 -   Pnpm (for developers)
 
 ### Running the App
+#### Linux / macOS
 1.  **Download any pre-built binary** from the releases.
 2.  **Execute**:
     ```bash
     ./web-k9
     ```
 3.  **Open Browser**: Navigate to `http://localhost:3030`.
-4.  **Select Config**: Choose your `.kube/config` and context from the dropdown or using the `Shift-C` shortcut.
+
+#### Windows
+1.  **Download** `web-k9-windows-amd64.exe` from the releases.
+2.  **Open PowerShell** or Command Prompt.
+3.  **Run**:
+    ```powershell
+    .\web-k9-windows-amd64.exe
+    ```
+4.  **Open Browser**: Navigate to `http://localhost:3030`.
 
 ---
 
@@ -112,6 +121,19 @@ This command will:
 | **Linux (amd64)** | `make -f Makefile.release linux-amd64` | `release/web-k9-linux-amd64` |
 | **Mac (arm64)** | `make -f Makefile.release darwin-arm64` | `release/web-k9-darwin-arm64` |
 | **Windows (amd64)** | `make -f Makefile.release windows-amd64` | `release/web-k9-windows-amd64.exe` |
+
+### Creating a Windows Installer
+To create a standard `.exe` installer (setup file) with Start Menu shortcuts and uninstaller:
+
+**Prerequisites**: Install NSIS (Nullsoft Scriptable Install System).
+- **Linux (Debian/Ubuntu)**: `sudo apt-get install nsis`
+- **Windows**: Download from [nsis.sourceforge.io](https://nsis.sourceforge.io/Download)
+
+**Build Command**:
+```bash
+make -f Makefile.release installer
+```
+This will generate `release/WebK9_Setup.exe`.
 
 ---
 

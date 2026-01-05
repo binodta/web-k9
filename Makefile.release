@@ -1,9 +1,17 @@
 BINARY_NAME=web-k9
 RELEASE_DIR=release
 
-.PHONY: release build-frontend clean linux-amd64 linux-arm64 darwin-amd64 darwin-arm64 windows-amd64
+.PHONY: release build-frontend clean linux-amd64 linux-arm64 darwin-amd64 darwin-arm64 windows-amd64 installer
 
 release: build-frontend linux-amd64 linux-arm64 darwin-amd64 darwin-arm64 windows-amd64
+
+installer:
+	@if ! command -v makensis >/dev/null 2>&1; then \
+		echo "Error: makensis not found. Please install NSIS."; \
+		echo "On Debian/Ubuntu: sudo apt-get install nsis"; \
+		exit 1; \
+	fi
+	makensis build/windows/installer.nsi
 
 build-frontend:
 	cd frontend && pnpm install && pnpm build
