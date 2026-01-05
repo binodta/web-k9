@@ -1,0 +1,33 @@
+BINARY_NAME=web-k9
+RELEASE_DIR=release
+
+.PHONY: release build-frontend clean linux-amd64 linux-arm64 darwin-amd64 darwin-arm64 windows-amd64
+
+release: build-frontend linux-amd64 linux-arm64 darwin-amd64 darwin-arm64 windows-amd64
+
+build-frontend:
+	cd frontend && pnpm install && pnpm build
+
+linux-amd64:
+	mkdir -p $(RELEASE_DIR)
+	cd backend && GOOS=linux GOARCH=amd64 go build -o ../$(RELEASE_DIR)/$(BINARY_NAME)-linux-amd64 main.go
+
+linux-arm64:
+	mkdir -p $(RELEASE_DIR)
+	cd backend && GOOS=linux GOARCH=arm64 go build -o ../$(RELEASE_DIR)/$(BINARY_NAME)-linux-arm64 main.go
+
+darwin-amd64:
+	mkdir -p $(RELEASE_DIR)
+	cd backend && GOOS=darwin GOARCH=amd64 go build -o ../$(RELEASE_DIR)/$(BINARY_NAME)-darwin-amd64 main.go
+
+darwin-arm64:
+	mkdir -p $(RELEASE_DIR)
+	cd backend && GOOS=darwin GOARCH=arm64 go build -o ../$(RELEASE_DIR)/$(BINARY_NAME)-darwin-arm64 main.go
+
+windows-amd64:
+	mkdir -p $(RELEASE_DIR)
+	cd backend && GOOS=windows GOARCH=amd64 go build -o ../$(RELEASE_DIR)/$(BINARY_NAME)-windows-amd64.exe main.go
+
+clean:
+	rm -rf $(RELEASE_DIR)
+	rm -rf backend/frontend/dist

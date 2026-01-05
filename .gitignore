@@ -1,0 +1,26 @@
+# Node
+node_modules/
+dist/
+.npm/
+
+# Go
+backend/frontend/dist/
+web-k9
+bin/
+*.exe
+*.test
+*.prof
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local
