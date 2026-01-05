@@ -96,11 +96,22 @@ graph TD
     ```
 
 ### Release Builds
-To build for all supported systems (Linux, Mac, Windows):
+To build for all supported systems (Linux, macOS, Windows):
 ```bash
 make -f Makefile.release release
 ```
-Binaries will be generated in the `release/` directory.
+This command will:
+1.  **Build the Frontend**: Compile the React application into production assets.
+2.  **Cross-Compile**: Generate specialized Go binaries for multiple architectures and operating systems.
+3.  **Output**: All binaries are placed in the `release/` directory.
+
+### Build Commands Reference
+| Target | Command | Result |
+| :--- | :--- | :--- |
+| **Development Build** | `make build` | Local binary (`web-k9`) |
+| **Linux (amd64)** | `make -f Makefile.release linux-amd64` | `release/web-k9-linux-amd64` |
+| **Mac (arm64)** | `make -f Makefile.release darwin-arm64` | `release/web-k9-darwin-arm64` |
+| **Windows (amd64)** | `make -f Makefile.release windows-amd64` | `release/web-k9-windows-amd64.exe` |
 
 ---
 
